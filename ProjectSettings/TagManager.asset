@@ -10,6 +10,7 @@ TagManager:
   - wall
   - ceiling
   - landing
+  - item
   layers:
   - Default
   - TransparentFX
@@ -18,10 +19,10 @@ TagManager:
   - Water
   - UI
   - Zone
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Enemy
+  - Player
+  - EnemyTrigger
   - 
   - 
   - 

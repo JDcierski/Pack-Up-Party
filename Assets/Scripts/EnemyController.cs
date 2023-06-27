@@ -11,18 +11,35 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float jumpSpeed;
     public Transform player;
+    private Collider2D col;
+    public float moveTime;
+    public float nextTime;
+    public bool moveRight;
+
+    [SerializeField] private LayerMask ground;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        col = GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frameGameObject.FindGameObjectWithTag("player")
     void Update()
     {
-            if(jumping && false){
-
+            if(Mathf.Abs(player.transform.position.x - transform.position.x) <= .05){
+                nextTime = Time.time + moveTime;
+                moveRight = Random.Range(0, 2) == 1;
+                
+            }
+            if((jumping || !grounded) && player.transform.position.y > transform.position.y + 1.5f){
+                rb2D.velocity = new Vector2(0, rb2D.velocity.y);
+            }else if(nextTime > Time.time){
+                if(moveRight){
+                    rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
+                }else{
+                    rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
+                }
             }else if(player.transform.position.x > this.transform.position.x){
                 rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
             }
@@ -32,6 +49,13 @@ public class EnemyController : MonoBehaviour
             
             if(jumping){
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
+            }
+
+            grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, ground);
+            if(jumping){
+                rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
+                grounded = false;
+                nextTime = -1;
             }
     }
     void OnTriggerEnter2D(Collider2D col)
@@ -43,7 +67,11 @@ public class EnemyController : MonoBehaviour
             jumping = false;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -7f);
         }
-
+        if(col.gameObject.tag.Equals("player")){
+            if(player.GetComponent<PlayerController>().grounded && grounded){
+                Debug.Log("Dead");
+            }
+        }
         
     }
     void OnCollisionEnter2D(Collision2D col)
