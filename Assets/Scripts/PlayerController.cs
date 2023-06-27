@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject selectedItem;
     public int numItems;
     
+    
     [SerializeField] private LayerMask ground;
     
     // Start is called before the first frame update

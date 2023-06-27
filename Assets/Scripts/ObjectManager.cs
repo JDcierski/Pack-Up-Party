@@ -14,16 +14,17 @@ public class ObjectManager : MonoBehaviour
     public GameObject[] layer3;
     public GameObject[] layer4;
     public GameObject[] layer5;
-    public GameObject[][] allLayers;
+    public GameObject[][] allLayers = new GameObject[5][];
 
     void Start(){
-        fillRandom(numItems);
         collected = 0;
         allLayers[0] = layer1;
         allLayers[1] = layer2;
         allLayers[2] = layer3;
         allLayers[3] = layer4;
         allLayers[4] = layer5;
+        fillRandom(numItems);
+        generateObjective();
     }
 
     //fills the scene with a random amount of items
@@ -41,7 +42,7 @@ public class ObjectManager : MonoBehaviour
     }
 
     //finds the highest layer with an object of a certain id
-    public GameObject[] findHighest(int id){
+    public GameObject[] findLowest(int id){
         foreach (GameObject obj in layer5){
             if(obj.GetComponent<ObjectSpanwer>().itemID == id){
                 return layer5;
@@ -71,7 +72,7 @@ public class ObjectManager : MonoBehaviour
     }
 
     //finds the lowest layer containing an object of a certain id
-    public GameObject[] findLowest(int id){
+    public GameObject[] findHighest(int id){
         foreach (GameObject obj in layer1){
             if(obj.GetComponent<ObjectSpanwer>().itemID == id){
                 return layer1;
@@ -110,7 +111,7 @@ public class ObjectManager : MonoBehaviour
     }
 
     //makes all items in scene not be the target
-    public void unassignTargetS(){
+    public void unassignTargets(){
         foreach (GameObject obj in layer1){
             obj.GetComponent<ObjectSpanwer>().target = false;
         }
@@ -133,7 +134,15 @@ public class ObjectManager : MonoBehaviour
         if(collected >= numObjectives){
             Debug.Log("You win");
         }else{
-
+            unassignTargets();
+            int randID = Random.Range(1, 4);
+            if(Random.Range(0, 2) == 1){
+                assignTarget(randID, findHighest(randID));
+                Debug.Log("Find the highest itemID:" + randID);
+            }else{
+                assignTarget(randID, findLowest(randID));
+                Debug.Log("Find the lowest itemID:" + randID);
+            }
         }
     }
 
