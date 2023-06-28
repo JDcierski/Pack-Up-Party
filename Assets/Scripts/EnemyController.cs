@@ -39,18 +39,18 @@ public class EnemyController : MonoBehaviour
                 rb2D.velocity = new Vector2(0, rb2D.velocity.y);
             }else if(nextTime > Time.time){
                 if(moveRight){
-                    spriteRenderer.flipX = false;
+                    spriteRenderer.flipX = true;
                     rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
                 }else{
-                    spriteRenderer.flipX = true;
+                    spriteRenderer.flipX = false;
                     rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
                 }
             }else if(player.transform.position.x > this.transform.position.x){
-                spriteRenderer.flipX = false;
+                spriteRenderer.flipX = true;
                 rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
             }
             else{
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = false;
                 rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
             }
             
@@ -58,7 +58,7 @@ public class EnemyController : MonoBehaviour
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
             }
 
-            grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, ground);
+            grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .3f, ground);
             if(jumping){
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
                 grounded = false;
