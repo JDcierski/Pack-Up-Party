@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public float speed;
     public float jumpSpeed;
     public Transform player;
-    private Collider2D col;
+    public Collider2D col;
     public float moveTime;
     public float nextTime;
     public bool moveRight;

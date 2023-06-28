@@ -9,7 +9,6 @@ public class ObjectManager : MonoBehaviour
     public int numItems;
     public int numObjectives;
     public int collected;
-    public int highestLayer;
     public int targetID;
     public GameObject[] layer1;
     public GameObject[] layer2;
@@ -29,13 +28,6 @@ public class ObjectManager : MonoBehaviour
 
     void Start(){
         collected = 0;
-        allLayers[0] = layer1;
-        allLayers[1] = layer2;
-        allLayers[2] = layer3;
-        allLayers[3] = layer4;
-        allLayers[4] = layer5;
-        fillRandom(numItems);
-        generateObjective();
     }
 
     //return the day#
@@ -45,9 +37,14 @@ public class ObjectManager : MonoBehaviour
 
     //fills the scene with a random amount of items
     public void fillRandom(int amount){
+        allLayers[0] = layer1;
+        allLayers[1] = layer2;
+        allLayers[2] = layer3;
+        allLayers[3] = layer4;
+        allLayers[4] = layer5;
         for (int i = 0; i < amount;){
             int randID = Random.Range(1, 4);
-            int randLayer = Random.Range(0, highestLayer);
+            int randLayer = Random.Range(0, 5);
             int randPos = Random.Range(0, allLayers[randLayer].Length);
 
             if(allLayers[randLayer][randPos].GetComponent<ObjectSpanwer>().hasItem == false){

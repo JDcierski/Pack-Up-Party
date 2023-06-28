@@ -3908,10 +3908,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8701f1a6cacc698489f7e0c6dfbcce85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numItems: 15
+  numItems: 10
   numObjectives: 3
   collected: 0
-  highestLayer: 5
   targetID: 0
   layer1:
   - {fileID: 8342982657447842210}
@@ -10161,6 +10160,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.1, y: 1.375}
   m_EdgeRadius: 0.05
+--- !u!61 &1317794388 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7875608397642363130, guid: aa1cb5c742269f242a371d7e42db309c, type: 3}
+  m_PrefabInstance: {fileID: 7875608396685264170}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1336915464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15484,6 +15488,10 @@ PrefabInstance:
       propertyPath: x3
       value: 
       objectReference: {fileID: 16274408}
+    - target: {fileID: 7875608397642363131, guid: aa1cb5c742269f242a371d7e42db309c, type: 3}
+      propertyPath: col
+      value: 
+      objectReference: {fileID: 1317794388}
     - target: {fileID: 7875608397642363131, guid: aa1cb5c742269f242a371d7e42db309c, type: 3}
       propertyPath: objManager
       value: 

@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb2D;
     public float speed;
     public float jumpSpeed;
-    private Collider2D col;
+    public Collider2D col;
     public GameObject selectedItem;
     public ObjectManager objManager;
     public GameManager gameManager;
@@ -80,17 +80,18 @@ public class PlayerController : MonoBehaviour
                         if(selectedItem.GetComponent<ObjectSpanwer>().itemID == 3){
                             Instantiate(fallingPaper);
                         }
+                        selectedItem.GetComponent<ObjectSpanwer>().reset();
                         objManager.correctItem();
                         Instantiate(confetti, transform.position, Quaternion.Euler(-90, 0, 0));
 
                     }else{
                         hp--;
+                        selectedItem.GetComponent<ObjectSpanwer>().reset();
                         objManager.wrongItem();
                         Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
                         updateHp();
                     }
                 }
-                selectedItem.GetComponent<ObjectSpanwer>().reset();
             }
             if(hp == 0){
                 gameManager.lose();           
