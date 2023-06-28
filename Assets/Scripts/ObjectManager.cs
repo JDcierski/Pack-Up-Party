@@ -15,6 +15,8 @@ public class ObjectManager : MonoBehaviour
     public GameObject[] layer4;
     public GameObject[] layer5;
     public GameObject[][] allLayers = new GameObject[5][];
+    public static int day;
+    public SceneManager gameManager;
 
     void Start(){
         collected = 0;
@@ -25,6 +27,11 @@ public class ObjectManager : MonoBehaviour
         allLayers[4] = layer5;
         fillRandom(numItems);
         generateObjective();
+    }
+
+    //return the day#
+    public int getDay(){
+        return day;
     }
 
     //fills the scene with a random amount of items
@@ -110,6 +117,17 @@ public class ObjectManager : MonoBehaviour
         }
     }
 
+    //
+    public void correctItem(){
+        numItems++; 
+        generateObjective();
+    }
+
+    //
+    public void wrongItem(){
+
+    }
+
     //makes all items in scene not be the target
     public void unassignTargets(){
         foreach (GameObject obj in layer1){
@@ -132,7 +150,8 @@ public class ObjectManager : MonoBehaviour
     //generates a new objective for the player or checks for win
     public void generateObjective(){
         if(collected >= numObjectives){
-            Debug.Log("You win");
+            day += 1; 
+            gameManager.win();
         }else{
             unassignTargets();
             int randID = Random.Range(1, 4);

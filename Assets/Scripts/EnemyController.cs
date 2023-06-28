@@ -69,7 +69,7 @@ public class EnemyController : MonoBehaviour
         }
         if(col.gameObject.tag.Equals("player")){
             if(player.GetComponent<PlayerController>().grounded && grounded){
-                Debug.Log("Dead");
+                player.GetComponent<PlayerController>().hit();
             }
         }
         

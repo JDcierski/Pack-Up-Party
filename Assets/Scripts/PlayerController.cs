@@ -12,7 +12,11 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     private Collider2D col;
     public GameObject selectedItem;
-    public int numItems;
+    public ObjectManager objManager;
+    public SceneManager gameManager;
+    public int hp;
+    public float invTime;
+    public float nextTime;
     
     
     [SerializeField] private LayerMask ground;
@@ -20,6 +24,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hp = 3;
         col = GetComponent<BoxCollider2D>();
     }
 
@@ -43,14 +48,26 @@ public class PlayerController : MonoBehaviour
             }
             if(Input.GetKeyDown("space") && selectedItem != null){
                 if(selectedItem.GetComponent<ObjectSpanwer>().target){
-                    Debug.Log("Correct Item");
+                    objManager.correctItem();
                 }else{
-                    Debug.Log("Wrong Item");
+                    hp--;
+                    objManager.wrongItem();
                 }
                 selectedItem.GetComponent<ObjectSpanwer>().reset();
             }
+            if(hp == 0){
+                gameManager.lose();           
+            }
             
 
+    }
+
+    //
+    public void hit(){
+        if(invTime < Time.time){
+            hp--;
+            nextTime = Time.time + invTime;
+        }
     }
     void OnTriggerEnter2D(Collider2D col)
     {
