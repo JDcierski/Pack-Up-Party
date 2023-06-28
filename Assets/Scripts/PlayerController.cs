@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Collider2D col;
     public GameObject selectedItem;
     public ObjectManager objManager;
-    public SceneManager gameManager;
+    public GameManager gameManager;
     public int hp;
     public float invTime;
     public float nextTime;

@@ -16,7 +16,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject[] layer5;
     public GameObject[][] allLayers = new GameObject[5][];
     public static int day;
-    public SceneManager gameManager;
+    public GameManager gameManager;
 
     void Start(){
         collected = 0;

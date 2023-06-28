@@ -14,9 +14,7 @@ public class ObjectSpanwer : MonoBehaviour
     public int goal;
 
     void Update(){
-        if(Input.GetKeyDown("up")){
-            summonItem(1);
-        }
+        
     }
     public void summonItem(int id){
         hasItem = true;

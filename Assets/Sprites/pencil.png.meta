@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d97f4f3b931c23f4e907b727c6237028
+guid: 12af6d843511837448a91381979a5eb8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 250
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pencil_outline_0
+      name: pencil_0
       rect:
         serializedVersion: 2
-        x: 973
-        y: 1189
-        width: 87
-        height: 495
+        x: 984
+        y: 1203
+        width: 62
+        height: 474
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b55bda1ea07eaaa418cd1f83381d1148
-      internalID: 1814129747
+      spriteID: ae21347c5144dfc4e8734c12018a278f
+      internalID: -1584705967
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      pencil_outline_0: 1814129747
+      pencil_0: -1584705967
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

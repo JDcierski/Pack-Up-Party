@@ -2718,7 +2718,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 14
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3283,7 +3283,7 @@ MonoBehaviour:
   - {fileID: 1132022318}
   - {fileID: 856036539}
   - {fileID: 578248189}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 1289948934}
 --- !u!1001 &576960984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6937,7 +6937,11 @@ MonoBehaviour:
   speed: 10
   jumpSpeed: 8
   selectedItem: {fileID: 0}
-  numItems: 0
+  objManager: {fileID: 574049541}
+  gameManager: {fileID: 1289948934}
+  hp: 0
+  invTime: 0
+  nextTime: 0
   ground:
     serializedVersion: 2
     m_Bits: 128
@@ -7652,6 +7656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1289948933}
+  - component: {fileID: 1289948934}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7674,6 +7679,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1289948934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289948932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a250697f8a8bd4ea38606d9aba2ec7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objManager: {fileID: 574049541}
 --- !u!1 &1303416718
 GameObject:
   m_ObjectHideFlags: 0
