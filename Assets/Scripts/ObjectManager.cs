@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class ObjectManager : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class ObjectManager : MonoBehaviour
     public GameObject bookText;
     public GameObject paperText;
     public GameObject pencilText;
+    public TMP_Text collectionText;
 
 
     void Start(){
@@ -189,6 +192,7 @@ public class ObjectManager : MonoBehaviour
         }else{
             paperText.SetActive(true);
         }
+        collectionText.text = collected + "/" + numObjectives;
     }
     //checks for a certain itemID in scene
     public bool hasId(int id){

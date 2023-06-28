@@ -15,12 +15,15 @@ public class EnemyController : MonoBehaviour
     public float moveTime;
     public float nextTime;
     public bool moveRight;
+    public SpriteRenderer spriteRenderer;
+    
 
     [SerializeField] private LayerMask ground;
     
     // Start is called before the first frame update
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<BoxCollider2D>();
     }
 
@@ -36,14 +39,18 @@ public class EnemyController : MonoBehaviour
                 rb2D.velocity = new Vector2(0, rb2D.velocity.y);
             }else if(nextTime > Time.time){
                 if(moveRight){
+                    spriteRenderer.flipX = false;
                     rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
                 }else{
+                    spriteRenderer.flipX = true;
                     rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
                 }
             }else if(player.transform.position.x > this.transform.position.x){
+                spriteRenderer.flipX = false;
                 rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
             }
             else{
+                spriteRenderer.flipX = true;
                 rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
             }
             

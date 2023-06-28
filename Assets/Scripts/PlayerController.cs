@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public GameObject x1;
     public GameObject x2;
     public GameObject x3;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
     
     
     [SerializeField] private LayerMask ground;
@@ -33,6 +35,8 @@ public class PlayerController : MonoBehaviour
         invTime = -1;
         hp = 3;
         col = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -40,11 +44,16 @@ public class PlayerController : MonoBehaviour
     {
         
             if(Input.GetKey("right")){
+                spriteRenderer.flipX = false;
+                animator.SetBool("isRunning", true);
                 rb2D.velocity = new Vector2(speed, rb2D.velocity.y);
             }
             else if(Input.GetKey("left") && !Input.GetKey("right")){
+                spriteRenderer.flipX = true;
+                animator.SetBool("isRunning", true);
                 rb2D.velocity = new Vector2(-1 * speed, rb2D.velocity.y);
             }else{
+                animator.SetBool("isRunning", false);
                 rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
             }
             
