@@ -14,7 +14,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Victory");
     }
 
-    public void startLevel(string lvlName){
+    public void startLevel(){
         SceneManager.LoadScene("Day " + objManager.getDay());
+    }
+    public void startGame(){
+        SceneManager.LoadScene("Day 1");
     }
 }

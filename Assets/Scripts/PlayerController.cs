@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        objManager.fillRandom(objManager.numItems);
+        objManager.generateObjective();
         updateHp();
         invTime = -1;
         hp = 3;
@@ -79,7 +82,7 @@ public class PlayerController : MonoBehaviour
                         }
                         objManager.correctItem();
                         Instantiate(confetti, transform.position, Quaternion.Euler(-90, 0, 0));
-    
+
                     }else{
                         hp--;
                         objManager.wrongItem();
