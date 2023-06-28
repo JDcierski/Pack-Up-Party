@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     public GameObject x3;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public GameObject fallingBook;
+    public GameObject fallingPencil;
+    public GameObject fallingPaper;
     
     
     [SerializeField] private LayerMask ground;
@@ -63,14 +66,26 @@ public class PlayerController : MonoBehaviour
                 grounded = false;
             }
             if(Input.GetKeyDown("space") && selectedItem != null){
-                if(selectedItem.GetComponent<ObjectSpanwer>().target && selectedItem.GetComponent<ObjectSpanwer>().hasItem){
-                    objManager.correctItem();
-                    Instantiate(confetti, transform.position, Quaternion.Euler(-90, 0, 0));
-                }else{
-                    hp--;
-                    objManager.wrongItem();
-                    Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
-                    updateHp();
+                if(selectedItem.GetComponent<ObjectSpanwer>().hasItem){
+                    if(selectedItem.GetComponent<ObjectSpanwer>().target){
+                        if(selectedItem.GetComponent<ObjectSpanwer>().itemID == 1){
+                            Instantiate(fallingBook);
+                        }
+                        if(selectedItem.GetComponent<ObjectSpanwer>().itemID == 2){
+                            Instantiate(fallingPencil);
+                        }
+                        if(selectedItem.GetComponent<ObjectSpanwer>().itemID == 3){
+                            Instantiate(fallingPaper);
+                        }
+                        objManager.correctItem();
+                        Instantiate(confetti, transform.position, Quaternion.Euler(-90, 0, 0));
+    
+                    }else{
+                        hp--;
+                        objManager.wrongItem();
+                        Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
+                        updateHp();
+                    }
                 }
                 selectedItem.GetComponent<ObjectSpanwer>().reset();
             }
