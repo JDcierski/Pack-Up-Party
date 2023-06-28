@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Victory.unity
+    guid: dd7d7426345f74a499ab8d564cba6e58
+  - enabled: 1
+    path: Assets/Scenes/Retry.unity
+    guid: 9244b6cdf45c29f4ab5257c2ee28ea5a
   m_configObjects: {}

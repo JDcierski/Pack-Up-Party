@@ -17,6 +17,11 @@ public class PlayerController : MonoBehaviour
     public int hp;
     public float invTime;
     public float nextTime;
+    public GameObject confetti;
+    public GameObject failfetti;
+    public GameObject x1;
+    public GameObject x2;
+    public GameObject x3;
     
     
     [SerializeField] private LayerMask ground;
@@ -24,6 +29,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        updateHp();
+        invTime = -1;
         hp = 3;
         col = GetComponent<BoxCollider2D>();
     }
@@ -41,17 +48,20 @@ public class PlayerController : MonoBehaviour
                 rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
             }
             
-            grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .1f, ground);
+            grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .5f, ground);
             if(jumping){
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
                 grounded = false;
             }
             if(Input.GetKeyDown("space") && selectedItem != null){
-                if(selectedItem.GetComponent<ObjectSpanwer>().target){
+                if(selectedItem.GetComponent<ObjectSpanwer>().target && selectedItem.GetComponent<ObjectSpanwer>().hasItem){
                     objManager.correctItem();
+                    Instantiate(confetti, transform.position, Quaternion.Euler(-90, 0, 0));
                 }else{
                     hp--;
                     objManager.wrongItem();
+                    Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
+                    updateHp();
                 }
                 selectedItem.GetComponent<ObjectSpanwer>().reset();
             }
@@ -65,6 +75,8 @@ public class PlayerController : MonoBehaviour
     //
     public void hit(){
         if(invTime < Time.time){
+            updateHp();
+            Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
             hp--;
             nextTime = Time.time + invTime;
         }
@@ -73,6 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         if(col.gameObject.tag.Equals("jump")){
             jumping = true;
+            col.gameObject.GetComponent<Animator>().SetBool("Squished", true);
         }
         if(col.gameObject.tag.Equals("landing")){
             jumping = false;
@@ -89,12 +102,36 @@ public class PlayerController : MonoBehaviour
             col.gameObject.GetComponent<ObjectSpanwer>().deselectItem();
             selectedItem = null;
         }
+        if(col.gameObject.tag.Equals("jump")){
+            col.gameObject.GetComponent<Animator>().SetBool("Squished", false);
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.tag.Equals("ceiling")){
             jumping = false;
             rb2D.velocity = new Vector2(rb2D.velocity.x, -7f);
+        }
+    }
+
+    //
+    public void updateHp(){
+        if(hp == 3){
+            x1.SetActive(false);
+            x2.SetActive(false);
+            x3.SetActive(false);
+        }else if(hp == 2){
+            x1.SetActive(true);
+            x2.SetActive(false);
+            x3.SetActive(false);
+        }else if(hp == 1){
+            x1.SetActive(true);
+            x2.SetActive(true);
+            x3.SetActive(false);
+        }else{
+            x1.SetActive(true);
+            x2.SetActive(true);
+            x3.SetActive(true);
         }
     }
     

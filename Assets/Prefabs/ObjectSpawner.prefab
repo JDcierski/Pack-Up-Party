@@ -52,6 +52,9 @@ MonoBehaviour:
   target: 0
   hasItem: 0
   itemID: 0
+  goal: 0
+  confetti: {fileID: 365687235185285399, guid: 2c8b0c085b3c6ee4498e36d03e32a14d, type: 3}
+  failfetti: {fileID: 365687235185285399, guid: acf411b0ce3d0864fae2f77ff77a61e5, type: 3}
 --- !u!61 &8342982657001722402
 BoxCollider2D:
   m_ObjectHideFlags: 0

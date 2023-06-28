@@ -17,6 +17,12 @@ public class ObjectManager : MonoBehaviour
     public GameObject[][] allLayers = new GameObject[5][];
     public static int day;
     public GameManager gameManager;
+    public GameObject highestText;
+    public GameObject lowestText;
+    public GameObject bookText;
+    public GameObject paperText;
+    public GameObject pencilText;
+
 
     void Start(){
         collected = 0;
@@ -119,7 +125,7 @@ public class ObjectManager : MonoBehaviour
 
     //
     public void correctItem(){
-        numItems++; 
+        collected++; 
         generateObjective();
     }
 
@@ -155,16 +161,35 @@ public class ObjectManager : MonoBehaviour
         }else{
             unassignTargets();
             int randID = Random.Range(1, 4);
-            if(Random.Range(0, 2) == 1){
-                assignTarget(randID, findHighest(randID));
-                Debug.Log("Find the highest itemID:" + randID);
+            if(hasId(randID)){
+                if(Random.Range(0, 2) == 1){
+                    assignTarget(randID, findHighest(randID));
+                    setDisplay(randID, true);
+                }else{
+                    assignTarget(randID, findLowest(randID));
+                    setDisplay(randID, false);
+                }
             }else{
-                assignTarget(randID, findLowest(randID));
-                Debug.Log("Find the lowest itemID:" + randID);
+                generateObjective();
             }
         }
     }
 
+    //
+    public void setDisplay(int id, bool highest){
+        highestText.SetActive(highest);
+        lowestText.SetActive(!highest);
+        bookText.SetActive(false);
+        paperText.SetActive(false);
+        pencilText.SetActive(false);
+        if(id == 1){
+            bookText.SetActive(true);
+        }else if(id == 2){
+            pencilText.SetActive(true);
+        }else{
+            paperText.SetActive(true);
+        }
+    }
     //checks for a certain itemID in scene
     public bool hasId(int id){
         foreach (GameObject obj in layer5){

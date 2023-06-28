@@ -32,7 +32,7 @@ public class EnemyController : MonoBehaviour
                 moveRight = Random.Range(0, 2) == 1;
                 
             }
-            if((jumping || !grounded) && player.transform.position.y > transform.position.y + 1.5f){
+            if((jumping || !grounded) && player.transform.position.y > transform.position.y + 1.75f){
                 rb2D.velocity = new Vector2(0, rb2D.velocity.y);
             }else if(nextTime > Time.time){
                 if(moveRight){
@@ -62,6 +62,7 @@ public class EnemyController : MonoBehaviour
     {
         if(col.gameObject.tag.Equals("jump")){
             jumping = true;
+            col.gameObject.GetComponent<Animator>().SetBool("Squished", true);
         }
         if(col.gameObject.tag.Equals("landing")){
             jumping = false;
@@ -73,6 +74,12 @@ public class EnemyController : MonoBehaviour
             }
         }
         
+    }
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.tag.Equals("jump")){
+            col.gameObject.GetComponent<Animator>().SetBool("Squished", false);
+        }
     }
     void OnCollisionEnter2D(Collision2D col)
     {
