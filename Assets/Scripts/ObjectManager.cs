@@ -156,7 +156,9 @@ public class ObjectManager : MonoBehaviour
     //generates a new objective for the player or checks for win
     public void generateObjective(){
         if(collected >= numObjectives){
-            day += 1; 
+            if(day < 10){
+                day += 1; 
+            }
             gameManager.win();
         }else{
             unassignTargets();

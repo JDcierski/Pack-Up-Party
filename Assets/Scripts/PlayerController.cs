@@ -103,11 +103,11 @@ public class PlayerController : MonoBehaviour
     //
     public void hit(){
         if(invTime < Time.time){
-            updateHp();
             Instantiate(failfetti, transform.position, Quaternion.Euler(-90, 0, 0));
             hp--;
             nextTime = Time.time + invTime;
         }
+        updateHp();
     }
     void OnTriggerEnter2D(Collider2D col)
     {
