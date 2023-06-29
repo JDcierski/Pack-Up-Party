@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Retry.unity
     guid: 9244b6cdf45c29f4ab5257c2ee28ea5a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestScene1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -35,4 +35,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Day 6.unity
     guid: e9cba51730e6ed54d820edcd7eb92579
+  - enabled: 1
+    path: Assets/Scenes/Day 7.unity
+    guid: aeed5d57e45ae5945bb8a44f50d6e746
+  - enabled: 1
+    path: Assets/Scenes/Day 8.unity
+    guid: 557632de9fe40944abe5aecf7f11a9eb
+  - enabled: 1
+    path: Assets/Scenes/Day 9.unity
+    guid: ae983dac4ab7f9044978dd43f990a6a9
+  - enabled: 1
+    path: Assets/Scenes/Day 10.unity
+    guid: 57ac2a648e600ba46a9b756917393efb
   m_configObjects: {}

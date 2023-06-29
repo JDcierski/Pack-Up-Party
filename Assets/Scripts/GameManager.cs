@@ -30,4 +30,7 @@ public class GameManager : MonoBehaviour
     public bool isBoy(){
         return boy;
     }
+    public void endGame(){
+        Application.Quit();
+    }
 }
