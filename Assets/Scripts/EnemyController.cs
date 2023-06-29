@@ -68,6 +68,7 @@ public class EnemyController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if(col.gameObject.tag.Equals("jump")){
+            this.transform.GetChild(0).GetComponent<AudioSource>().Play();
             jumping = true;
             col.gameObject.GetComponent<Animator>().SetBool("Squished", true);
         }
