@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public ObjectManager objManager;
+    public static bool boy;
     public void lose(){
         SceneManager.LoadScene("Retry");
     }
@@ -19,5 +20,14 @@ public class GameManager : MonoBehaviour
     }
     public void startGame(){
         SceneManager.LoadScene("Day 1");
+    }
+    public void setBoy(){
+        boy = true;
+    }
+    public void setGirl(){
+        boy = false;
+    }
+    public bool isBoy(){
+        return boy;
     }
 }

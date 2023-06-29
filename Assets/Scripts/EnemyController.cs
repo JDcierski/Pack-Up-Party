@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public float nextTime;
     public bool moveRight;
     public SpriteRenderer spriteRenderer;
+    public Animator animator;
     
 
     [SerializeField] private LayerMask ground;
@@ -59,6 +60,7 @@ public class EnemyController : MonoBehaviour
             }
 
             grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .3f, ground);
+            animator.SetBool("isJumping", !grounded);
             if(jumping){
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
                 grounded = false;

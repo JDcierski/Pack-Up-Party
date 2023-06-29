@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public GameObject fallingPaper;
     
     
+    
     [SerializeField] private LayerMask ground;
     
     // Start is called before the first frame update
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator.SetBool("boy", gameManager.isBoy());
     }
 
     // Update is called once per frame
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
             }
             
             grounded = Physics2D.BoxCast(col.bounds.center, col.bounds.size, 0f, Vector2.down, .5f, ground);
+            animator.SetBool("isJumping", !grounded);
             if(jumping){
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpSpeed);
                 grounded = false;
